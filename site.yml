@@ -1,1 +1,42 @@
 ---
+- name: RedHat final project
+  hosts: all
+  tasks:
+    - name: Setup internal knowlegde base and company website # BR-01, BR-02
+      ansible.builtin.import_role:
+        name: web
+    
+    - name: Setup shared file storage  # BR-03
+      ansible.builtin.import_role:
+        name: storage
+      
+    - name: Setup internal DNS  # BR-04
+      ansible.builtin.import_role:
+        name: dns
+
+    - name: Setup users  # BR-05
+      ansible.builtin.import_role:
+        name: users
+    
+    - name: Setup per-user company share  # BR-06
+      ansible.builtin.import_role:
+        name: ???
+
+    - name: Setup internal email server  # BR-07
+      ansible.builtin.import_role:
+        name: email
+
+    - name: Setup security hardening  # BR-08
+      ansible.builtin.import_role:
+        name: security
+    
+    - name: Setup logging and rotation  #BR-09, BR-11
+      ansible.builtin.import_role:
+        name: logging
+      
+    - name: Setup maintenance  # BR-10
+      ansible.builtin.import_role:
+        name: patching
+
+    
+
