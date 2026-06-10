@@ -16,6 +16,7 @@
 - name: Setup MySQL root password
   ansible.builtin.command:
     - "mysql_secure_connection --set-root-pass {{ mysql_root_password }}"
+  when: inventory_hostname in groups['db_nfs']
 
 - name: Check DB connection
   community.mysql.mysql_info:
@@ -25,9 +26,11 @@
     filter: version
   ignore_errors: true
   register: mysql_connection_output
+  when: inventory_hostname in groups['db_nfs']
 
 - name: Print MySQL status
   ansible.builtin.debug:
     msg: "MySQL state: {{ mysql_connection_output }}"
+  when: inventory_hostname in groups['db_nfs']
 
 ## konfigurirati mysql (istraziti)
