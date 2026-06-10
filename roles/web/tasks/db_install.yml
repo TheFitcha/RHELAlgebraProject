@@ -1,7 +1,7 @@
 ---
 - name: Install database and related packages
   ansible.builtin.yum:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
   loop: "{{ db_packages }}"
   when: inventory_hostname in groups['db_nfs']

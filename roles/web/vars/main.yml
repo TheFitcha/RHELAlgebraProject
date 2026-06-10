@@ -8,8 +8,8 @@ db_packages:
   - php-json
   - php-intl
 
-wordpress_packages:
-  -
+#wordpress_packages:
+#  -
 
 mediawiki_document_root: /var/www/html/mediawiki
 mediawiki_error_log: /var/log/httpd/mediawiki_error.log
