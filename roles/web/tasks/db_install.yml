@@ -1,0 +1,33 @@
+---
+- name: Install database and related packages
+  ansible.builtin.yum:
+    name: {{ item }}
+    state: present
+  loop: "{{ db_packages }}"
+  when: inventory_hostname in groups['db_nfs']
+
+- name: Start and enable mysql on serverb
+  ansible.builtin.systemd:
+    name: mysql
+    state: started
+    enabled: true
+  when: inventory_hostname in groups['db_nfs']
+
+- name: Setup MySQL root password
+  ansible.builtin.command:
+    - "mysql_secure_connection --set-root-pass {{ mysql_root_password }}"
+
+- name: Check DB connection
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    login_host: "{{ login_host }}"
+    filter: version
+  ignore_errors: true
+  register: mysql_connection_output
+
+- name: Print MySQL status
+  ansible.builtin.debug:
+    msg: "MySQL state: {{ mysql_connection_output }}"
+
+## konfigurirati mysql (istraziti)

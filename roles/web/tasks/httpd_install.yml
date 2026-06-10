@@ -1,0 +1,13 @@
+---
+- name: Install apache webserver
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+  when: inventory_hostname in groups['web_dns']
+
+- name: Start and enable httpd on servera
+  ansible.builtin.systemd:
+    name: httpd
+    state: started
+    enabled: true
+  when: inventory_hostname in groups['web_dns']

@@ -1,0 +1,24 @@
+db_packages:
+  - mariadb-server 
+  - php
+  - php-mysqlnd
+  - php-gd
+  - php-xml
+  - php-mbstring
+  - php-json
+  - php-intl
+
+wordpress_packages:
+  -
+
+mediawiki_document_root: /var/www/html/mediawiki
+mediawiki_error_log: /var/log/httpd/mediawiki_error.log
+mediawiki_custom_log: /var/log/httpd/mediawiki_access.log
+mediawiki_custom_log_type: combined
+mediawiki_download_url: "https://releases.wikimedia.org/mediawiki/1.37/mediawiki-1.37.1.tar.gz"
+
+wordpress_download_url: "https://wordpress.org/latest.tar.gz"
+wordpress_document_root: /var/www/html/wordpress
+wordpress_error_log: /var/log/httpd/wordpress_error.log
+wordpress_custom_log: /var/log/httpd/wordpress_access.log
+wordpress_custom_log_type: combined

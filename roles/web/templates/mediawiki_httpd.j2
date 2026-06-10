@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    DocumentRoot {{ mediawiki_document_root }}
+    <Directory {{ mediawiki_document_root }}>
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+    ErrorLog {{ mediawiki_error_log }}
+    CustomLog {{ mediawiki_custom_log }} {{ mediawiki_custom_log_type }}
+</VirtualHost>
