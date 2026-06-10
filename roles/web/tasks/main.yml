@@ -1,14 +1,18 @@
 ---
 - name: Config httpd on servera
-  import_tasks: httpd_setup.yml
+  import_tasks: roles/web/tasks/httpd_setup.yml
   when: inventory_hostname in groups['web_dns']
 
 - name: Config mysql on serverb
-  import_tasks: db_setup.yml
+  import_tasks: roles/web/tasks/db_setup.yml
   when: inventory_hostname in groups['db_nfs']
 
 - name: Config mediawiki on servera
-  import_tasks: mediawiki_install.yml
+  import_tasks: roles/web/tasks/mediawiki_install.yml
+  when: inventory_hostname in groups['web_dns']
+
+- name: Config wordpress on servera
+  import_tasks: roles/web/tasks/wordpress_install.yml
   when: inventory_hostname in groups['web_dns']
 
 
