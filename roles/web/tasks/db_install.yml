@@ -14,7 +14,7 @@
   when: inventory_hostname in groups['db_nfs']
 
 - name: Setup MySQL root password
-  ansible.builtin.command: "mysql_secure_connection --set-root-pass {{ mysql_root_password }}"
+  ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
   when: inventory_hostname in groups['db_nfs']
 
 - name: Check DB connection
