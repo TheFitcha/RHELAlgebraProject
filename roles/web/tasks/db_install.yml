@@ -33,3 +33,5 @@
   when: inventory_hostname in groups['db_nfs']
 
 ## konfigurirati mysql (istraziti)
+
+## sloziti python env... community.mysql
