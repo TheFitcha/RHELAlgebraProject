@@ -19,6 +19,12 @@
   when: inventory_hostname in groups['web_dns']
 
 - name: Apply Wordpress database configuration
+  ansible.builtin.copy:
+    src: files/wordpress_config.php
+    dest: "{{ wordpress_document_root }}/wp-config.php"
+    owner: apache
+    group: apache
+    mode: '0755'
 
 - name: Deploy configuration for Wordpress
   ansible.builtin.template:
