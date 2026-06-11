@@ -6,15 +6,6 @@
   loop: "{{ wordpress_packages }}"
   when: inventory_hostname in groups['web_dns']
 
-- name: Download and extract Wordpress tarball
-  ansible.builtin.unarchive:
-    src: "{{ wordpress_download_url }}"
-    dest: "{{ wordpress_document_root }}"
-    remote_src: true
-    setype: httpd_sys_content_t
-  when: inventory_hostname in groups['web_dns']
-
-
 # might need to change to SELinux perms
 - name: Set apache ownership of Wordpress webpage
   ansible.builtin.file:
@@ -25,6 +16,14 @@
     mode: '0755'
   when: inventory_hostname in groups['web_dns']
 
+- name: Download and extract Wordpress tarball
+  ansible.builtin.unarchive:
+    src: "{{ wordpress_download_url }}"
+    dest: "{{ wordpress_document_root }}"
+    remote_src: true
+    setype: httpd_sys_content_t
+  when: inventory_hostname in groups['web_dns']
+
 - name: Apply Wordpress database configuration
   ansible.builtin.copy:
     src: files/wordpress_config.php
@@ -33,7 +32,7 @@
     group: apache
     mode: '0755'
   when: inventory_hostname in groups['web_dns']
-  
+
 - name: Deploy configuration for Wordpress
   ansible.builtin.template:
     src: templates/wordpress_httpd.j2

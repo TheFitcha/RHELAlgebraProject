@@ -1,13 +1,4 @@
 ---
-- name: Download and extract Mediawiki tarball
-  ansible.builtin.unarchive:
-    src: "{{ mediawiki_download_url }}"
-    dest: "{{ mediawiki_document_root }}"
-    remote_src: true
-    setype: httpd_sys_content_t
-  when: inventory_hostname in groups['web_dns']  
-
-
 # might need to change to SELinux perms
 - name: Set apache ownership of mediawiki webpage
   ansible.builtin.file:
@@ -17,6 +8,14 @@
     state: directory
     mode: '0755'
   when: inventory_hostname in groups['web_dns']
+
+- name: Download and extract Mediawiki tarball
+  ansible.builtin.unarchive:
+    src: "{{ mediawiki_download_url }}"
+    dest: "{{ mediawiki_document_root }}"
+    remote_src: true
+    setype: httpd_sys_content_t
+  when: inventory_hostname in groups['web_dns']  
 
 - name: Deploy configuration for MediaWiki
   ansible.builtin.template:

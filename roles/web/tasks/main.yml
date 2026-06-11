@@ -9,11 +9,9 @@
 
 - name: Config mediawiki on servera
   import_tasks: mediawiki_setup.yml
-  when: inventory_hostname in groups['web_dns']
 
 - name: Config wordpress on servera
   import_tasks: wordpress_setup.yml
-  when: inventory_hostname in groups['web_dns']
 
 
   
