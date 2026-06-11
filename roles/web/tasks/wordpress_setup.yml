@@ -33,7 +33,7 @@
   when: inventory_hostname in groups['web_dns']
 
 - name: Restart httpd to apply new configuration
-  ansible.builtin.systemd_service:
+  ansible.builtin.systemd:  # novija verzija je systemd_service (ako bude isao upgrade ansiblea)
     state: restarted
     name: httpd
     enabled: true
