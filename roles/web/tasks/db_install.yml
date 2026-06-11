@@ -18,7 +18,7 @@
   when: inventory_hostname in groups['db_nfs']
 
 - name: Check DB connection
-  community.mysql.mysql_info:
+  ansible.mysql.mysql_info:
     login_user: root
     login_password: "{{ mysql_root_password }}"
     login_host: "{{ login_host }}"
