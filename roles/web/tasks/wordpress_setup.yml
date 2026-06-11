@@ -1,8 +1,8 @@
 ---
 - name: Download and extract Wordpress tarball
   ansible.builtin.unarchive:
-    src: {{ wordpress_download_url }}
-    dest: {{ wordpress_document_root }}
+    src: "{{ wordpress_download_url }}"
+    dest: "{{ wordpress_document_root }}"
     remote_src: true
     setype: httpd_sys_content_t
   when: inventory_hostname in groups['web_dns']
@@ -11,7 +11,7 @@
 # might need to change to SELinux perms
 - name: Set apache ownership of Wordpress webpage
   ansible.builtin.file:
-    path: {{ wordpress_document_root }}
+    path: "{{ wordpress_document_root }}"
     owner: apache
     group: apache
     state: directory
