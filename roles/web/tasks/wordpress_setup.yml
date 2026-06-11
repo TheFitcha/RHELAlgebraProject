@@ -1,4 +1,11 @@
 ---
+- name: Install related packages
+  ansible.builtin.yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ wordpress_packages }}"
+  when: inventory_hostname in groups['web_dns']
+
 - name: Download and extract Wordpress tarball
   ansible.builtin.unarchive:
     src: "{{ wordpress_download_url }}"
@@ -25,7 +32,8 @@
     owner: apache
     group: apache
     mode: '0755'
-
+  when: inventory_hostname in groups['web_dns']
+  
 - name: Deploy configuration for Wordpress
   ansible.builtin.template:
     src: templates/wordpress_httpd.j2
