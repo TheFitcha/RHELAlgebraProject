@@ -1,1 +1,3 @@
-- name: ansible.mysql
+collections:
+  - name: ansible.mysql
+    source: https://galaxy.ansible.com
