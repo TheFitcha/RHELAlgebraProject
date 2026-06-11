@@ -7,6 +7,7 @@ db_packages:
   - php-mbstring
   - php-json
   - php-intl
+mysql_root_password: "db_password_#321"
 
 wordpress_packages:
   - php
