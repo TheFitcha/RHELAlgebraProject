@@ -8,7 +8,7 @@
 
 - name: Start and enable mysql on serverb
   ansible.builtin.systemd:
-    name: mysql
+    name: mariadb
     state: started
     enabled: true
   when: inventory_hostname in groups['db_nfs']
