@@ -1,6 +1,8 @@
 ---
 - name: RedHat final project
   hosts: all
+  become: true
+  remote_user: root
   tasks:
     - name: Setup internal knowlegde base and company website # BR-01, BR-02
       ansible.builtin.import_role:
