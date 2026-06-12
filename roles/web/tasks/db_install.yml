@@ -23,7 +23,7 @@
   ansible.mysql.mysql_user: 
     name: root
     host: localhost
-    password: {{ mysql_root_password }}
+    password: "{{ mysql_root_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.lock
     state: present 
   when: inventory_hostname in groups['db_nfs']
