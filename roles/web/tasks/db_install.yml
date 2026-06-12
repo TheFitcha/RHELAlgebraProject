@@ -13,6 +13,12 @@
     enabled: true
   when: inventory_hostname in groups['db_nfs']
 
+- name: Deploy configuration for MySQL
+  ansible.builtin.template:
+    src: templates/rootdb.j2
+    dest: /root/.my.cnf
+  when: inventory_hostname in groups['db_nfs']
+
 - name: Setup MySQL root password
   ansible.mysql.mysql_user: name=root host={{ item }} password={{ mysql_root_password }}
   with_items:
