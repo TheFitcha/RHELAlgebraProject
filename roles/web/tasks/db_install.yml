@@ -14,7 +14,7 @@
   when: inventory_hostname in groups['db_nfs']
 
 - name: Setup MySQL root password
-  mysql_user: name=root host={{ item }} password={{ mysql_root_password }}
+  ansible.mysql.mysql_user: name=root host={{ item }} password={{ mysql_root_password }}
   with_items:
     - 127.0.0.1
     - ::1
@@ -22,14 +22,14 @@
   when: inventory_hostname in groups['db_nfs']
 
 - name: Delete anonymous MySQL user
-  mysql_user: name="" host={{ item }} state=absent
+  ansible.mysql.mysql_user: name="" host={{ item }} state=absent
   with_items:
     - localhost
     - "{{ansible_nodename}}"
   when: inventory_hostname in groups['db_nfs']
 
 - name: Remove MySQL test database
-  mysql_db: name=test state=absent
+  ansible.mysql.mysql_db: name=test state=absent
   when: inventory_hostname in groups['db_nfs']
 
 - name: Check DB connection
