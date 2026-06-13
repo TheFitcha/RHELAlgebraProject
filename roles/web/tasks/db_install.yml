@@ -19,6 +19,7 @@
     host: localhost
     password: "{{ mysql_root_password }}"
     #login_unix_socket: /var/run/mysqld/mysqld.lock
+    check_implicit_admin: true
     state: present 
   when: inventory_hostname in groups['db_nfs']
 
