@@ -1,16 +1,18 @@
 ---
-- name: Deploy configuration for MySQL
-  ansible.builtin.template:
-    src: templates/rootdb.j2
-    dest: /root/.my.cnf
-    mode: "0600"
-  when: inventory_hostname in groups['db_nfs']
-
 - name: Install database and related packages
   ansible.builtin.yum:
     name: "{{ item }}"
     state: present
   loop: "{{ db_packages }}"
+  when: inventory_hostname in groups['db_nfs']
+
+- name: Setup MySQL root password
+  ansible.mysql.mysql_user: 
+    name: root
+    host: localhost
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.lock
+    state: present 
   when: inventory_hostname in groups['db_nfs']
 
 - name: Start and enable mysql on serverb
@@ -20,14 +22,11 @@
     enabled: true
   when: inventory_hostname in groups['db_nfs']
 
-# ne radi
-- name: Setup MySQL root password
-  ansible.mysql.mysql_user: 
-    name: root
-    host: localhost
-    password: "{{ mysql_root_password }}"
-    login_unix_socket: /var/run/mysqld/mysqld.lock
-    state: present 
+- name: Deploy configuration for MySQL
+  ansible.builtin.template:
+    src: templates/rootdb.j2
+    dest: /root/.my.cnf
+    mode: "0600"
   when: inventory_hostname in groups['db_nfs']
 
 - name: Delete anonymous MySQL user
