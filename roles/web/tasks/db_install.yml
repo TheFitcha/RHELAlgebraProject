@@ -3,6 +3,7 @@
   ansible.builtin.template:
     src: templates/rootdb.j2
     dest: /root/.my.cnf
+    mode: "0600"
   when: inventory_hostname in groups['db_nfs']
 
 - name: Install database and related packages
@@ -19,6 +20,7 @@
     enabled: true
   when: inventory_hostname in groups['db_nfs']
 
+# ne radi
 - name: Setup MySQL root password
   ansible.mysql.mysql_user: 
     name: root
