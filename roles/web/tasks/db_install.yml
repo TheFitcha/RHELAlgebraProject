@@ -48,7 +48,7 @@
   ansible.mysql.mysql_info:
     login_user: root
     login_password: "{{ mysql_root_password }}"
-    login_host: 'localhost'
+    login_host: localhost
     filter: version
   ignore_errors: true
   register: mysql_connection_output

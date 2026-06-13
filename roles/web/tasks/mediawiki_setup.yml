@@ -30,8 +30,17 @@
     enabled: true
   when: inventory_hostname in groups['web_dns']
 
+- name: Load Mediawiki SQL script
+  ansible.builtin.set_fact:
+    mw_sql_content: "{{ lookup('file', 'files/mediawiki_db.sql')}}"
+
 - name: Prepare Mediawiki database
-  ansible.builtin.command: mysql < mediawiki_db.sql
+  ansible.mysql.mysql_query:
+    login_host: localhost
+    login_user: root
+    login_password: "{{mysql_root_password}}"
+    check_implicit_admin: true
+    query: "{{mw_sql_content}}"
   register: dbmw_prep_result
   when: inventory_hostname in groups['db_nfs']
 
