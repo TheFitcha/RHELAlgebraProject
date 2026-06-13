@@ -15,9 +15,9 @@
 
 - name: Setup MySQL root password
   ansible.mysql.mysql_user: 
-    name: wordpress
+    login_user: root
+    name: root
     password: "{{ mysql_root_password }}"
-    priv: '*.*:ALL'
     state: present 
   become: true
   when: inventory_hostname in groups['db_nfs']
