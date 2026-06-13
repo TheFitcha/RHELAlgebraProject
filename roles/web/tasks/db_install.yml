@@ -21,6 +21,7 @@
     check_implicit_admin: true
     name: wordpress
     state: present 
+  become: true
   when: inventory_hostname in groups['db_nfs']
 
 - name: Deploy configuration for MySQL
