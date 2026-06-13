@@ -15,12 +15,12 @@
 
 - name: Setup MySQL root password
   ansible.mysql.mysql_user: 
-    name: root
-    host: localhost
+    login_user: root
+    login_password: localhost
     password: "{{ mysql_root_password }}"
     check_implicit_admin: true
+    name: wordpress
     state: present 
-  become: true
   when: inventory_hostname in groups['db_nfs']
 
 - name: Deploy configuration for MySQL
