@@ -13,16 +13,17 @@
     enabled: true
   when: inventory_hostname in groups['db_nfs']
 
-# - name: Setup MySQL root password
-#   ansible.mysql.mysql_user: 
-#     login_user: root
-#     name: root
-#     password: "{{ mysql_root_password }}"
-#     state: present 
-#   become: true
-#   when: inventory_hostname in groups['db_nfs']
 - name: Setup MySQL root password
-  command: mysql -u root --execute="UPDATE mysql.user SET authentication_string = PASSWORD('{{ mysql_root_password }}') WHERE User = 'root' AND Host = 'localhost';"
+  ansible.mysql.mysql_user:
+    check_implicit_admin: true 
+    login_user: 'root'
+    login_password: ''
+    login_host: 'localhost'
+    name: root
+    password: "{{ mysql_root_password }}"
+    state: present 
+    login_unix_socket: /var/run/mysql/mysql.sock
+  become: true
   when: inventory_hostname in groups['db_nfs']
 
 - name: Deploy configuration for MySQL
