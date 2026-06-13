@@ -21,6 +21,7 @@
     login_unix_socket: /var/lib/mysql/mysql.lock
     check_implicit_admin: true
     state: present 
+  become: true
   when: inventory_hostname in groups['db_nfs']
 
 - name: Deploy configuration for MySQL
