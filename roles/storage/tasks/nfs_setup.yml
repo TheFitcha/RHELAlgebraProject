@@ -12,6 +12,7 @@
   community.general.lvol:
     vg: "{{ vg_name }}"
     lv: "{{ lv_name }}"
+    size: 100%FREE
   
 - name: Create xfs filesystem
   community.general.filesystem:
