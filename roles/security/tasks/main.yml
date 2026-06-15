@@ -10,33 +10,16 @@
     state: started
     enabled: true
 
-- name: Allow needed ports through firewall
-  ansible.posix.firewalld:
-    port: "{{item}}/tcp"
-    permanent: true
-    state: enabled
-  with_items: "{{ firewall_allowed_ports }}"
+- name: Setup web security
+  import_tasks: web_security.yml
+  when: inventory_hostname in groups['web_dns']
 
-- name: Allow needed services through firewall
-  ansible.posix.firewalld:
-    service: "{{item}}"
-    state: enabled
-    permanent: true
-    immediate: true
-    offline: true
-  with_items: "{{ firewall_allowed_services }}"
+- name: Setup db security
+  import_tasks: db_security.yml
+  when: inventory_hostname in groups['db_nfs']
 
-- name: Allow needed protocols through firewall
-  ansible.posix.firewalld:
-    protocol: "{{item}}"
-    permanent: true
-    state: enabled
-  with_items: "{{ firewall_allowed_services }}"
 
-- name: Allow needed httpd ports through SELinux
-  community.general.seport:
-    ports: "{{item}}"
-    proto: tcp
-    setype: http_port_t
-    state: present
-  with_items: "{{ selinux_allowed_httpd_ports }}"
+
+
+
+

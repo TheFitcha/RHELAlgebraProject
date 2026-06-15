@@ -1,0 +1,5 @@
+firewall_allowed_protocols_db:
+  - nfs
+
+firewall_allowed_services_db:
+  - nfs-server

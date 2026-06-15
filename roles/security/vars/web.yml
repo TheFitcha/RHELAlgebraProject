@@ -1,0 +1,10 @@
+firewall_allowed_ports_web:
+  - 90 #mediawiki
+  - 91 #wordpress
+
+firewall_allowed_services_web:
+  - httpd
+
+selinux_allowed_httpd_ports_web:
+  - 90 #mediawiki
+  - 91 #wordpress

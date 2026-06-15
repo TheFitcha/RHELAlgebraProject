@@ -1,0 +1,25 @@
+---
+- name: Allow needed ports through firewall (web)
+  ansible.posix.firewalld:
+    port: "{{item}}/tcp"
+    permanent: true
+    state: enabled
+  with_items: "{{ firewall_allowed_ports_web }}"
+
+- name: Allow needed services through firewall (web)
+  ansible.posix.firewalld:
+    service: "{{item}}"
+    state: enabled
+    permanent: true
+    immediate: true
+    offline: true
+  with_items: "{{ firewall_allowed_services_web }}"
+
+- name: Allow needed httpd ports through SELinux (web)
+  community.general.seport:
+    ports: "{{item}}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  with_items: "{{ selinux_allowed_httpd_ports_web }}"
+
