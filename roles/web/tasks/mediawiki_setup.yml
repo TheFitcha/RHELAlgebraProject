@@ -27,9 +27,10 @@
 
 # clunky rjesenje, ali za sad je tako
 - name: Rename mediawiki directory so httpd can find it
-  ansible.builtin.command: "mv {{ mediawiki_full.files[0].path }} {{ mediawiki_document_root }}/mediawiki"
+  ansible.builtin.command: "mv {{ mediawiki_full.files[0].path }} mediawiki"
   when: mediawiki_full.matched != 0
 
+# NEED TO ADD EXCEPTION FOR SELINUX
 - name: Deploy configuration for MediaWiki
   ansible.builtin.template:
     src: templates/mediawiki_httpd.j2

@@ -14,7 +14,7 @@ wordpress_packages:
   - php
   - php-mysqlnd
 
-mediawiki_document_root: /var/www/html/
+mediawiki_document_root: /var/www/html
 mediawiki_error_log: /var/log/httpd/mediawiki_error.log
 mediawiki_custom_log: /var/log/httpd/mediawiki_access.log
 mediawiki_custom_log_type: combined
@@ -22,7 +22,7 @@ mediawiki_download_url: "https://releases.wikimedia.org/mediawiki/1.37/mediawiki
 mediawiki_httpd_port: 91
 
 wordpress_download_url: "https://wordpress.org/latest.tar.gz"
-wordpress_document_root: /var/www/html/
+wordpress_document_root: /var/www/html
 wordpress_error_log: /var/log/httpd/wordpress_error.log
 wordpress_custom_log: /var/log/httpd/wordpress_access.log
 wordpress_custom_log_type: combined

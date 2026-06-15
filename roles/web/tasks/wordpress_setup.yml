@@ -34,6 +34,7 @@
     mode: '0755'
   when: inventory_hostname in groups['web_dns']
 
+# NEED TO ADD EXCEPTION FOR SELINUX
 - name: Deploy configuration for Wordpress
   ansible.builtin.template:
     src: templates/wordpress_httpd.j2
