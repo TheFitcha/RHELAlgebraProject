@@ -7,7 +7,7 @@
 - name: Ensure firewall is running
   ansible.builtin.systemd:
     name: firewalld
-    state: running
+    state: started
     enabled: true
 
 - name: Allow needed ports through firewall
