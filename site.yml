@@ -35,10 +35,10 @@
     #   tags: email
 
 
-    # - name: Setup security hardening  # BR-08
-    #   ansible.builtin.import_role:
-    #     name: security
-    #   tags: security
+    - name: Setup security hardening  # BR-08
+      ansible.builtin.import_role:
+        name: security
+      tags: security
 
     # - name: Setup logging and rotation  #BR-09, BR-11
     #   ansible.builtin.import_role:
