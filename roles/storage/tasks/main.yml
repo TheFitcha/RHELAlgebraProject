@@ -10,11 +10,13 @@
     name: nfs-server
     state: started
     enabled: true
+  when: inventory_hostname in groups['db_nfs']
 
 - name: Check if LV device exists
   ansible.builtin.stat:
     path: "/dev/{{vg_name}}/{{lv_name}}"
   register: lvm_stat_result
+  when: inventory_hostname in groups['db_nfs']
 
 - name: Create LV for NFS
   import_tasks: nfs_setup.yml
@@ -42,9 +44,11 @@
     path: /etc/exports
     line: "{{nfs_host_path}} *(rw,sync,no_subtree_check,no_root_squash)"
     state: present
+  when: inventory_hostname in groups['db_nfs']
 
 - name: Reload NFS export
   ansible.builtin.command: exportfs -ra
+  when: inventory_hostname in groups['db_nfs']
 
 - name: Mount shared folder on all servers
   ansible.posix.mount:
