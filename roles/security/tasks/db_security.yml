@@ -4,7 +4,7 @@
     protocol: "{{item}}"
     permanent: true
     state: enabled
-  with_items: "{{ firewall_allowed_services_db }}"
+  with_items: "{{ firewall_allowed_protocols_db }}"
 
 - name: Allow needed services through firewall (db)
   ansible.posix.firewalld:
