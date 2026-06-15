@@ -39,7 +39,9 @@
     login_host: localhost
     login_user: root
     login_password: "{{mysql_root_password}}"
-    query: "{{mw_sql_content}}"
+    query: "{{item}}"
+    single_transaction: true
+  with_items: "{{mw_sql_content}}"
   register: dbmw_prep_result
   when: inventory_hostname in groups['db_nfs']
 
