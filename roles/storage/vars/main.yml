@@ -5,6 +5,6 @@ nfs_packages:
 nfs_host_path: /var/nfs_shared
 nfs_mount_path: /mnt/shared
 
-lvm_nfs_device: /dev/sdb
+lvm_nfs_device: /dev/vdb
 vg_name: nfs_vg
 lv_name: nfs_lv
