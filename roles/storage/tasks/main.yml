@@ -50,6 +50,7 @@
   ansible.builtin.command: exportfs -ra
   when: inventory_hostname in groups['db_nfs']
 
+# DODATI EXCEPTION U FIREWALL ZA NFS PROTOKOL KASNIJE
 - name: Mount shared folder on all servers
   ansible.posix.mount:
     path: "{{ nfs_mount_path }}"

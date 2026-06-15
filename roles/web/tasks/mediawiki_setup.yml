@@ -32,7 +32,7 @@
 
 - name: Load Mediawiki SQL script
   ansible.builtin.set_fact:
-    mw_sql_content: "{{ lookup('file', 'files/mediawiki_db.sql')}}"
+    mw_sql_content: "{{ lookup('file', 'files/mediawiki_db.sql').splitlines()}}"
 
 - name: Prepare Mediawiki database
   ansible.mysql.mysql_query:
