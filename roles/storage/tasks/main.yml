@@ -5,6 +5,12 @@
     state: present
   loop: "{{ nfs_packages }}"
 
+- name: Start and enable nfs-server
+  ansible.builtin.service:
+    name: nfs-server
+    state: started
+    enabled: true
+
 - name: Check if LV device exists
   ansible.builtin.stat:
     path: "/dev/{{vg_name}}/{{lv_name}}"
@@ -17,8 +23,8 @@
 - name: Create mount folder on host
   ansible.builtin.file:
     path: "{{ nfs_host_path }}"
-    owner: root
-    group: root
+    owner: nobody
+    group: nobody
     state: directory
     mode: '0777'
   when: inventory_hostname in groups['db_nfs']
@@ -30,7 +36,16 @@
     fstype: xfs
     state: mounted
   when: inventory_hostname in groups['db_nfs']
-  
+
+- name: Expose LV to NFS
+  ansible.builtin.lineinfile:
+    path: /etc/exports
+    line: "{{nfs_host_path}} *(rw,sync,no_subtree_check,no_root_squash)"
+    state: present
+
+- name: Reload NFS export
+  ansible.builtin.command: exportfs -ra
+
 - name: Mount shared folder on all servers
   ansible.posix.mount:
     path: "{{ nfs_mount_path }}"
