@@ -1,5 +1,5 @@
 <VirtualHost *:{{mediawiki_httpd_port}}>
-    DocumentRoot {{ mediawiki_document_root }}
+    DocumentRoot {{ mediawiki_document_root }}/mediawiki
     <Directory {{ mediawiki_document_root }}>
         Options FollowSymLinks
         AllowOverride All

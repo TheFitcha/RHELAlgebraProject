@@ -1,5 +1,5 @@
 <VirtualHost *:{{wordpress_httpd_port}}>
-    DocumentRoot {{ wordpress_document_root }}
+    DocumentRoot {{ wordpress_document_root }}/wordpress
     <Directory {{ wordpress_document_root }}>
         Options FollowSymLinks
         AllowOverride All
