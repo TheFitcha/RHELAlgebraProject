@@ -1,4 +1,4 @@
-<VirtualHost *:90>
+<VirtualHost *:{{wordpress_httpd_port}}>
     DocumentRoot {{ wordpress_document_root }}
     <Directory {{ wordpress_document_root }}>
         Options FollowSymLinks
@@ -8,3 +8,4 @@
     ErrorLog {{ wordpress_error_log }}
     CustomLog {{ wordpress_custom_log }} {{ wordpress_custom_log_type }}
 </VirtualHost>
+Listen {{wordpress_httpd_port}}
