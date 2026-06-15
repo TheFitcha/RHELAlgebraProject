@@ -1,0 +1,35 @@
+---
+- name: Install required packages
+  ansible.builtin.yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ nfs_packages }}"
+
+- name: Create LV for NFS
+  import_tasks: nfs_setup.yml
+  when: inventory_hostname in groups['db_nfs']
+
+- name: Create mount folder on host
+  ansible.builtin.file:
+    path: "{{ nfs_host_path }}"
+    owner: root
+    group: root
+    state: directory
+    mode: '0777'
+  when: inventory_hostname in groups['db_nfs']
+
+- name: Mount LV on host
+  ansible.posix.mount:
+    path: "{{ nfs_host_path }}"
+    src: "/dev/{{vg_name}}/{{lv_name}}"
+    fstype: xfs
+    state: mounted
+  when: inventory_hostname in groups['db_nfs']
+  
+- name: Mount shared folder on all servers
+  ansible.posix.mount:
+    path: "{{ nfs_mount_path }}"
+    src: "serverb.lab.example.com:{{nfs_host_path}}"
+    opts: rw,sync
+    fstype: nfs
+    state: mounted

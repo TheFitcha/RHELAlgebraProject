@@ -1,0 +1,19 @@
+---
+- name: Create PV
+  community.general.lvm_pv:
+    device: "{{ lvm_nfs_device }}"
+
+- name: Create VG
+  community.general.lvg:
+    vg: "{{ vg_name }}"
+    pvs: "{{ lvm_nfs_device }}"
+
+- name: Create LV
+  community.general.lvol:
+    vg: "{{ vg_name }}"
+    lv: "{{ lv_name }}"
+  
+- name: Create xfs filesystem
+  community.general.filesystem:
+    fstype: xfs
+    dev: "/dev/{{vg_name}}/{{lv_name}}"

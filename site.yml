@@ -8,9 +8,9 @@
       ansible.builtin.import_role:
         name: web
     
-    # - name: Setup shared file storage  # BR-03
-    #   ansible.builtin.import_role:
-    #     name: storage
+    - name: Setup shared file storage  # BR-03
+      ansible.builtin.import_role:
+        name: storage
       
     # - name: Setup internal DNS  # BR-04
     #   ansible.builtin.import_role:
