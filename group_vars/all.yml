@@ -1,1 +1,16 @@
 ansible_python_interpreter: /usr/bin/python3
+
+selinux_allowed_httpd_ports:
+  - 90 #mediawiki
+  - 91 #wordpress
+  
+firewall_allowed_ports:
+  - 90 #mediawiki
+  - 91 #wordpress
+
+firewall_allowed_services:
+  - httpd
+  - nfs-server
+
+firewall_allowed_protocols:
+  - nfs
