@@ -7,6 +7,7 @@
     group: apache
     state: directory
     mode: '0755'
+    recurse: true
   when: inventory_hostname in groups['web_dns']
 
 - name: Download and extract Mediawiki tarball
@@ -16,6 +17,18 @@
     remote_src: true
     setype: httpd_sys_content_t
   when: inventory_hostname in groups['web_dns']  
+
+- name: Find extracted mediawiki folder
+  ansible.builtin.find:
+    paths: "{{ mediawiki_document_root }}"
+    file_type: directory
+    patterns: "mediawiki-*"
+  register: mediawiki_full
+
+# clunky rjesenje, ali za sad je tako
+- name: Rename mediawiki directory so httpd can find it
+  ansible.builtin.command: "mv {{ mediawiki_full.files[0].path }} {{ mediawiki_document_root }}/mediawiki"
+  when: mediawiki_full.matched != 0
 
 - name: Deploy configuration for MediaWiki
   ansible.builtin.template:

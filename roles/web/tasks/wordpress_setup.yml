@@ -14,6 +14,7 @@
     group: apache
     state: directory
     mode: '0755'
+    recurse: true
   when: inventory_hostname in groups['web_dns']
 
 - name: Download and extract Wordpress tarball
@@ -27,7 +28,7 @@
 - name: Apply Wordpress database configuration
   ansible.builtin.copy:
     src: files/wordpress_config.php
-    dest: "{{ wordpress_document_root }}/wp-config.php"
+    dest: "{{ wordpress_document_root }}/wordpress/wp-config.php"
     owner: apache
     group: apache
     mode: '0755'
