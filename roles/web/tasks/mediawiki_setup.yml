@@ -1,4 +1,11 @@
 ---
+- name: Install related packages
+  ansible.builtin.yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ mediawiki_packages }}"
+  when: inventory_hostname in groups['web_dns']
+
 # might need to change to SELinux perms
 - name: Set apache ownership of mediawiki webpage
   ansible.builtin.file:

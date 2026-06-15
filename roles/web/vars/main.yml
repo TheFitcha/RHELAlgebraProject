@@ -13,6 +13,20 @@ mysql_root_password: "db_password_#321"
 wordpress_packages:
   - php
   - php-mysqlnd
+  - php-gd
+  - php-xml
+  - php-mbstring
+  - php-json
+  - php-intl
+
+mediawiki_packages:
+  - php
+  - php-mysqlnd
+  - php-gd
+  - php-xml
+  - php-mbstring
+  - php-json
+  - php-intl
 
 mediawiki_document_root: /var/www/html
 mediawiki_error_log: /var/log/httpd/mediawiki_error.log
