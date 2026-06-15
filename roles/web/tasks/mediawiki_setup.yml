@@ -43,6 +43,7 @@
     single_transaction: true
   with_items: "{{mw_sql_content}}"
   register: dbmw_prep_result
+  ignore_errors: true
   when: inventory_hostname in groups['db_nfs']
 
 - name: Print database result
