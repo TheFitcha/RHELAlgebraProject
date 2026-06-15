@@ -46,8 +46,18 @@
     enabled: true
   when: inventory_hostname in groups['web_dns']
 
-- name: Prepare Mediawiki database
-  ansible.builtin.command: mysql < wordpress_db.sql
+- name: Load Wordpress SQL script
+  ansible.builtin.set_fact:
+    wp_sql_content: "{{ lookup('file', 'files/wordpress_db.sql').splitlines()}}"
+
+- name: Prepare Wordpress database
+  ansible.mysql.mysql_query:
+    login_host: localhost
+    login_user: root
+    login_password: "{{mysql_root_password}}"
+    query: "{{item}}"
+    single_transaction: true
+  with_items: "{{wp_sql_content}}"
   register: dbwp_prep_result
   ignore_errors: true
   when: inventory_hostname in groups['db_nfs']
