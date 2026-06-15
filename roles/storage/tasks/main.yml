@@ -5,9 +5,14 @@
     state: present
   loop: "{{ nfs_packages }}"
 
+- name: Check if LV device exists
+  ansible.builtin.stat:
+    path: "/dev/{{vg_name}}/{{lv_name}}"
+  register: lvm_stat_result
+
 - name: Create LV for NFS
   import_tasks: nfs_setup.yml
-  when: inventory_hostname in groups['db_nfs']
+  when: inventory_hostname in groups['db_nfs'] and not lvm_stat_result.stat.exists
 
 - name: Create mount folder on host
   ansible.builtin.file:
