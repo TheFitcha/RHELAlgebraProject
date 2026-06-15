@@ -1,0 +1,42 @@
+---
+- name: Ensure SELinux is enforcing
+  ansible.posix.selinux:
+    policy: targeted
+    state: enforcing
+
+- name: Ensure firewall is running
+  ansible.builtin.systemd:
+    name: firewalld
+    state: running
+    enabled: true
+
+- name: Allow needed ports through firewall
+  ansible.posix.firewalld:
+    port: "{{item}}/tcp"
+    permanent: true
+    state: enabled
+  with_items: "{{ firewall_allowed_ports }}"
+
+- name: Allow needed services through firewall
+  ansible.posix.firewalld:
+    service: "{{item}}"
+    state: enabled
+    permanent: true
+    immediate: true
+    offline: true
+  with_items: "{{ firewall_allowed_services }}"
+
+- name: Allow needed protocols through firewall
+  ansible.posix.firewalld:
+    protocol: "{{item}}"
+    permanent: true
+    state: enabled
+  with_items: "{{ firewall_allowed_services }}"
+
+- name: Allow needed httpd ports through SELinux
+  community.general.seport:
+    ports: "{{item}}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  with_items: "{{ selinux_allowed_httpd_ports }}"
