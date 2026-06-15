@@ -1,10 +1,10 @@
 ---
-# - name: Allow needed ports through firewall (web)
-#   ansible.posix.firewalld:
-#     port: "{{item}}/tcp"
-#     permanent: true
-#     state: enabled
-#   with_items: "{{ firewall_allowed_ports_web }}"
+- name: Allow needed ports through firewall (web)
+  ansible.posix.firewalld:
+    port: "{{item}}/tcp"
+    permanent: true
+    state: enabled
+  with_items: "{{ firewall_allowed_ports_web }}"
 
 - name: Allow needed services through firewall (web)
   ansible.posix.firewalld:
