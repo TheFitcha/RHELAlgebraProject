@@ -33,3 +33,4 @@
     opts: rw,sync
     fstype: nfs
     state: mounted
+  when: inventory_hostname not in groups['db_nfs']
