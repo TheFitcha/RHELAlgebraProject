@@ -49,6 +49,7 @@
 - name: Prepare Mediawiki database
   ansible.builtin.command: mysql < wordpress_db.sql
   register: dbwp_prep_result
+  ignore_errors: true
   when: inventory_hostname in groups['db_nfs']
 
 - name: Print database result
