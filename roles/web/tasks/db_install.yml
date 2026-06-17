@@ -59,6 +59,5 @@
     msg: "MySQL state: {{ mysql_connection_output }}"
   when: inventory_hostname in groups['db_nfs']
 
-## konfigurirati mysql (istraziti)
 
 ## sloziti python env... community.mysql

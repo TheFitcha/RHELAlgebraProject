@@ -1,4 +1,5 @@
 <VirtualHost *:{{wordpress_httpd_port}}>
+    ServerName {{ wordpress_server_name }}
     DocumentRoot {{ wordpress_document_root }}/wordpress
     <Directory {{ wordpress_document_root }}>
         Options FollowSymLinks

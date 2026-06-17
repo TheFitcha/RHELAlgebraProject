@@ -1,4 +1,5 @@
 <VirtualHost *:{{mediawiki_httpd_port}}>
+    ServerName {{ mediawiki_server_name }}
     DocumentRoot {{ mediawiki_document_root }}/mediawiki
     <Directory {{ mediawiki_document_root }}>
         Options FollowSymLinks

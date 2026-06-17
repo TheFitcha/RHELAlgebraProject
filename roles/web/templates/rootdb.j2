@@ -2,3 +2,7 @@
 user=root
 password={{mysql_root_password}}
 socket=/var/lib/mysql/mysql.sock
+
+[mysqld]
+skip-networking=0
+bind-address=0.0.0.0
