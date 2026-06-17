@@ -45,6 +45,12 @@
   register: mediawiki_full
   when: inventory_hostname in groups['web_dns']
 
+- name: Print
+  debug:
+    msg: "{{mediawiki_full}}"
+  when: inventory_hostname in groups['web_dns']
+
+
 # clunky rjesenje, ali za sad je tako
 - name: Rename mediawiki directory so httpd can find it
   ansible.builtin.command: "mv {{ mediawiki_full.files[0].path }} mediawiki"
