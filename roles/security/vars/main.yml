@@ -9,7 +9,7 @@ firewall_allowed_ports_web:
   - 91 #wordpress
 
 firewall_allowed_services_web:
-  - httpd
+  - http
 
 selinux_allowed_httpd_ports_web:
   - 90 #mediawiki
