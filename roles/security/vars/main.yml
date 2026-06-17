@@ -1,8 +1,8 @@
 firewall_allowed_protocols_db:
-  - nfs
+  -
 
 firewall_allowed_services_db:
-  - nfs-server
+  - nfs
 
 firewall_allowed_ports_web:
   - 90 #mediawiki
