@@ -43,18 +43,11 @@
     file_type: directory
     patterns: "mediawiki-*"
   register: mediawiki_full
-  when: inventory_hostname in groups['web_dns']
-
-- name: Print
-  debug:
-    msg: "{{mediawiki_full}}"
-  when: inventory_hostname in groups['web_dns']
-
 
 # clunky rjesenje, ali za sad je tako
 - name: Rename mediawiki directory so httpd can find it
   ansible.builtin.command: "mv {{ mediawiki_full.files[0].path }} mediawiki"
-  when: mediawiki_full.matched != 0 and inventory_hostname in groups['web_dns']
+  when: inventory_hostname in groups['web_dns'] and mediawiki_full.matched != 0 
 
 # NEED TO ADD EXCEPTION FOR SELINUX
 - name: Deploy configuration for MediaWiki
