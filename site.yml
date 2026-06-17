@@ -19,10 +19,10 @@
     #     name: dns
     #   tags: dns
 
-    # - name: Setup users  # BR-05
-    #   ansible.builtin.import_role:
-    #     name: users
-    #   tags: users
+    - name: Setup users  # BR-05
+      ansible.builtin.import_role:
+        name: users
+      tags: users
 
     # - name: Setup per-user company share  # BR-06
     #   ansible.builtin.import_role:

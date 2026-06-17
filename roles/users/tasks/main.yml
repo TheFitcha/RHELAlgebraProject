@@ -1,0 +1,20 @@
+---
+- name: Create sudo users
+  ansible.builtin.user:
+    name: "{{item.username}}"
+    group: "sudo,{{item.group}}"
+    create_home: yes
+    shell: /bin/bash
+  with_items: "{{ sudo_users }}"
+
+- name: Create regular users
+  ansible.builtin.user:
+    name: "{{item.username}}"
+    group: "{{item.group}}"
+    create_home: true
+    shell: /bin/bash
+  with_items: "{{ regular_users }}"
+
+- name: Setup OpenSSH to use SSH key based authentication only (disable password)
+
+- name: Edit sudo access
