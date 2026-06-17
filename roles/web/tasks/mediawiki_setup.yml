@@ -48,7 +48,7 @@
 # clunky rjesenje, ali za sad je tako
 - name: Rename mediawiki directory so httpd can find it
   ansible.builtin.command: "mv {{ mediawiki_full.files[0].path }} mediawiki"
-  when: mediawiki_full.matched != 0
+  when: mediawiki_full.matched != 0 and inventory_hostname in groups['web_dns']
 
 # NEED TO ADD EXCEPTION FOR SELINUX
 - name: Deploy configuration for MediaWiki
