@@ -20,6 +20,7 @@
 - name: Print syntax check status
   ansible.builtin.debug:
     msg: "{{dnsmasq_syntax_check}}"
+  failed_when: "'syntax check OK' not in dnsmasq_syntax_check"
   when: inventory_hostname in groups['web_dns']
 
 - name: Enable and start dnsmasq service
