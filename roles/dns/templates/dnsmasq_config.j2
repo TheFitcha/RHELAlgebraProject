@@ -7,6 +7,6 @@ domain={{dns_domain}}
 server={{item}}
 {% endfor %}
 
-{% for item in dns_listen_addresses %}
+{% for item in dns_listen_addresses.split(',') %}
 address=/{{dns_domain}}/{{item}}
 {% endfor %}
