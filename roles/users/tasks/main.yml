@@ -9,7 +9,7 @@
 - name: Create sudo users
   ansible.builtin.user:
     name: "{{item.username}}"
-    group: "sudo,{{item.group}}"
+    groups: "sudo,{{item.group}}"
     create_home: yes
     shell: /bin/bash
   with_items: "{{ sudo_users }}"
@@ -17,7 +17,7 @@
 - name: Create regular users
   ansible.builtin.user:
     name: "{{item.username}}"
-    group: "{{item.group}}"
+    groups: "{{item.group}}"
     create_home: true
     shell: /bin/bash
   with_items: "{{ regular_users }}"
