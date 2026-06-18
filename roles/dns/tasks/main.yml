@@ -7,7 +7,7 @@
   
 - name: Deploy config for DNS service
   ansible.builtin.template:
-    src: template/dnsmasq_config.j2
+    src: templates/dnsmasq_config.j2
     dest: /etc/dnsmasq.d/00-ansible-dns.conf
   when: inventory_hostname in groups['web_dns']
 
