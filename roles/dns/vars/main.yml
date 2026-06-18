@@ -1,0 +1,7 @@
+dns_listen_addresses: "127.0.0.1,172.25.250.11"
+dns_interface: 
+dns_nameservers:
+  - 8.8.8.8
+  - 8.8.4.4
+
+dns_domain: "nexcore.local"

@@ -14,10 +14,10 @@
         name: storage
       tags: storage
       
-    # - name: Setup internal DNS  # BR-04
-    #   ansible.builtin.import_role:
-    #     name: dns
-    #   tags: dns
+    - name: Setup internal DNS  # BR-04
+      ansible.builtin.import_role:
+        name: dns
+      tags: dns
 
     - name: Setup users  # BR-05
       ansible.builtin.import_role:
