@@ -1,7 +1,7 @@
 ---
 - name: Create needed groups
   ansible.builtin.group:  
-    name: {{ item.group }}
+    name: "{{ item.group }}"
     state: present
   with_items: "{{ [sudo_users, regular_users] |
                   community.general.lists_mergeby('username') }}"
