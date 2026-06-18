@@ -6,21 +6,14 @@
   with_items: "{{ [sudo_users, regular_users] |
                   community.general.lists_mergeby('username') }}"
 
-- name: Create sudo users
-  ansible.builtin.user:
-    name: "{{item.username}}"
-    groups: "sudo,{{item.group}}"
-    create_home: yes
-    shell: /bin/bash
-  with_items: "{{ sudo_users }}"
-
-- name: Create regular users
+- name: Create users
   ansible.builtin.user:
     name: "{{item.username}}"
     groups: "{{item.group}}"
     create_home: true
     shell: /bin/bash
-  with_items: "{{ regular_users }}"
+  with_items: "{{ [sudo_users, regular_users] |
+                  community.general.lists_mergeby('username') }}"
 
 - name: Setup OpenSSH
   import_tasks: openssh_config.yml
