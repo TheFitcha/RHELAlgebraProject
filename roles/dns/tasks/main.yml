@@ -11,13 +11,6 @@
     dest: /etc/dnsmasq.d/00-ansible-dns.conf
   when: inventory_hostname in groups['web_dns']
 
-- name: Enable and start dnsmasq service
-  ansible.builtin.systemd:
-    name: dnsmasq
-    state: started
-    enabled: true
-  when: inventory_hostname in groups['web_dns']
-
 - name: Check configuration syntax
   ansible.builtin.command: dnsmasq --test
   register: dnsmasq_syntax_check
@@ -27,4 +20,13 @@
   ansible.builtin.debug:
     msg: "{{dnsmasq_syntax_check}}"
   when: inventory_hostname in groups['web_dns']
+
+- name: Enable and start dnsmasq service
+  ansible.builtin.systemd:
+    name: dnsmasq
+    state: started
+    enabled: true
+  when: inventory_hostname in groups['web_dns'] and "syntax check OK" in {{dnsmasq_syntax_check}}
+
+
   
