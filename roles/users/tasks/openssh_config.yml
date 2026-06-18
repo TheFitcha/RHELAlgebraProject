@@ -1,0 +1,19 @@
+---
+- name: Disable password authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+    validate: '/usr/sbin/sshd -t -f %s'
+  
+- name: Enable public key authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PubKeyAuthentication'
+    line: 'PubkeyAuthentication yes'
+    validate: '/usr/sbin/sshd -t -f %s'
+
+- name: Restart sshd to apply changes
+  ansible.builtin.service:
+    name: sshd
+    state: restarted

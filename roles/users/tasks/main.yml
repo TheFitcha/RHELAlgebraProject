@@ -15,6 +15,10 @@
     shell: /bin/bash
   with_items: "{{ regular_users }}"
 
-- name: Setup OpenSSH to use SSH key based authentication only (disable password)
+- name: Setup OpenSSH
+  import_tasks: openssh_config.yml
 
 - name: Edit sudo access
+  ansible.builtin.template:
+    src: templates/sudoers.j2
+    dest: /etc/sudoers.d/01-ansible-managed
