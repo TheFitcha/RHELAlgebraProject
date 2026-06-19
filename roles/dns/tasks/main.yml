@@ -22,7 +22,7 @@
     msg: "{{dnsmasq_syntax_check}}"
   when: inventory_hostname in groups['web_dns']
 
-- name: Enable and start dnsmasq service
+- name: Enable and restart dnsmasq service
   ansible.builtin.systemd:
     name: dnsmasq
     state: restarted
