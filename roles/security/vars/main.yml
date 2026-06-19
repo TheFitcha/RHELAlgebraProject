@@ -13,6 +13,8 @@ firewall_allowed_ports_web:
 
 firewall_allowed_services_web:
   - http
+  - dns
+  - dhcp
 
 selinux_allowed_httpd_ports_web:
   - 90 #mediawiki

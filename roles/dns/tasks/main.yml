@@ -29,5 +29,14 @@
     enabled: true
   when: "inventory_hostname in groups['web_dns'] and 'syntax check OK' in dnsmasq_syntax_check"
 
+- name: Set /etc/resolv.conf to resolve a custom DNS
+  ansible.builtin.lineinfile:
+    path: /etc/resolv.conf
+    regexp: "{{item.reg}}"
+    line: "{{item.spec}}"
+  with_items: 
+    - { reg: '^#?nameserver', spec: "nameserver {{resolv_main_nameserver}}" }
+    - { reg: '^#?search', spec: "search lab.example.com example.com {{dns_domain}}"}
+
 
   
