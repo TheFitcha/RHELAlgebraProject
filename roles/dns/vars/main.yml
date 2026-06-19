@@ -1,9 +1,9 @@
 dns_listen_addresses: "127.0.0.1,172.25.250.10"
 dns_interface: eth0
 dns_nameservers:
-  # - 172.25.250.220
-  # - 8.8.8.8
-  # - 8.8.4.4
+  - 172.25.250.220
+  - 8.8.8.8
+  - 8.8.4.4
 
 dns_domain: "nexcore.local"
 
