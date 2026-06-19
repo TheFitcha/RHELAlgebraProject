@@ -1,7 +1,7 @@
 listen-address={{dns_listen_addresses}}
 interface={{dns_interface}}
 expand-hosts
-domain={{root_dns_domains}}
+domain={{root_dns_domain}}
 
 {% for item in dns_nameservers %}
 server={{item}}
