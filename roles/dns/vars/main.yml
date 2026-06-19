@@ -5,8 +5,8 @@ dns_nameservers:
 
 root_dns_domain: nexcore.local
 sub_dns_domains:
-  - "nexcore.local"
-  - "www.nexcore.local"
-  - "wiki.nexcore.local"
+  - "{{root_dns_domain}}"
+  - "www.{{root_dns_domain}}"
+  - "wiki.{{root_dns_domain}}"
 
 resolv_main_nameserver: 172.25.250.10
