@@ -1,12 +1,12 @@
 listen-address={{dns_listen_addresses}}
 interface={{dns_interface}}
 expand-hosts
-domain={{dns_domain}}
+domain={{root_dns_domains}}
 
 {% for item in dns_nameservers %}
 server={{item}}
 {% endfor %}
 
-{% for item in dns_domains %}
+{% for item in sub_dns_domains %}
 address=/{{item}}/{{dns_listen_addresses}}
 {% endfor %}

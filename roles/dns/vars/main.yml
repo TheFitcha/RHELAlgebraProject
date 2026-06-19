@@ -3,7 +3,8 @@ dns_interface: eth0
 dns_nameservers:
   - 172.25.250.220
 
-dns_domains:
+root_dns_domain: nexcore.local
+sub_dns_domains:
   - "nexcore.local"
   - "www.nexcore.local"
   - "wiki.nexcore.local"
