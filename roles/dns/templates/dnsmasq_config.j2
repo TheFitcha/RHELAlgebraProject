@@ -3,7 +3,9 @@ interface={{dns_interface}}
 expand-hosts
 domain={{dns_domain}}
 
-
+{% for item in dns_nameservers %}
+server={{item}}
+{% endfor %}
 
 {% for item in dns_listen_addresses.split(',') %}
 address=/{{dns_domain}}/{{item}}
