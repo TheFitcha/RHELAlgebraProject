@@ -1,9 +1,11 @@
-dns_listen_addresses: 
-  - 172.25.250.10
+dns_listen_addresses: "172.25.250.10"
 dns_interface: eth0
 dns_nameservers:
   - 172.25.250.220
 
-dns_domain: "nexcore.local"
+dns_domains:
+  - "nexcore.local"
+  - "www.nexcore.local"
+  - "wiki.nexcore.local"
 
 resolv_main_nameserver: 172.25.250.10
