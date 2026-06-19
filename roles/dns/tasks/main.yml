@@ -41,19 +41,30 @@
     group: root
     mode: 0644
     backup: yes
-  
-- name: Restart NetworkManager
-  ansible.builtin.systemd:
-    name: NetworkManager
-    state: restarted
+  notify:
+    - reload NetworkManager
+
+- name: Create backup of current /etc/resolv.conf
+  ansible.builtin.command: mv /etc/resolv.conf /etc/resolv.conf.bak
 
 - name: Set /etc/resolv.conf to resolve a custom DNS
   ansible.builtin.template:
     src: templates/resolv_conf.j2
-    dest: /etc/resolv.conf
+    dest: /etc/resolv.conf.ansible-managed
     owner: root
     group: root
     mode: 0644
+
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: /etc/resolv.conf.ansible-managed
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    state: link
+  notify: 
+    - reload NetworkManager
+
 
 
   
