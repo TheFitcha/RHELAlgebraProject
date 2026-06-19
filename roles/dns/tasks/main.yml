@@ -48,9 +48,11 @@
   ansible.builtin.file:
     path: /etc/resolv.conf
     attributes: -i
+  ignore_errors: true
 
 - name: Create backup of current /etc/resolv.conf
   ansible.builtin.command: mv /etc/resolv.conf /etc/resolv.conf.bak
+  ignore_errors: true
 
 - name: Set /etc/resolv.conf to resolve a custom DNS
   ansible.builtin.template:
