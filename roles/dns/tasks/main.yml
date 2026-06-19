@@ -27,7 +27,7 @@
     name: dnsmasq
     state: started
     enabled: true
-  when: "inventory_hostname in groups['web_dns'] and 'syntax check OK' in dnsmasq_syntax_check"
+  when: inventory_hostname in groups['web_dns'] and 'syntax check OK' in dnsmasq_syntax_check.stderr
 
 - name: Set /etc/resolv.conf to resolve a custom DNS
   ansible.builtin.lineinfile:
