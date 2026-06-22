@@ -12,13 +12,16 @@
     path: "{{nfs_host_path}}/users"
     state: directory
     mode: 0777
+  when: inventory_hosts in group['db_nfs']
 
 - name: Create subdirectories for every user
   ansible.builtin.file:
-    path: "{{nfs_host_path}}/users/{{item}}"
+    path: "{{nfs_host_path}}/users/{{item.username}}"
     state: directory
     mode: 0755
     owner: "{{item.username}}"
     group: "{{item.group}}"
   with_items: "{{ [sudo_users, regular_users] |
                   community.general.lists_mergeby('username') }}"
+  when: inventory_hosts in group['db_nfs']
+            

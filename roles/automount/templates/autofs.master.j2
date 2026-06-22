@@ -1,0 +1,7 @@
+{% for item in sudo_users %}
+/home/{{item.username}}/Company_Share /etc/auto.misc --timeout 30
+{% endfor %}
+
+{% for item in regular_users %}
+/home/{{item.username}}/Company_Share /etc/auto.misc --timeout 30
+{% endfor %}

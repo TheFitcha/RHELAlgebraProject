@@ -1,0 +1,6 @@
+---
+- name: Ensure autofs is installed
+  ansible.builtin.yum:
+    name: autofs
+    state: present
+

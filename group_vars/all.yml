@@ -9,4 +9,5 @@ regular_users:
   - { username: mkt01, group: markerting }
   
 nfs_mount_path: /mnt/shared
+nfs_host_path: /var/nfs_shared
 
