@@ -17,6 +17,6 @@
     block: "{{ lookup('template', 'autofs.misc.j2')}}"
 
 - name: Restart AutoFS service
-  ansible.builtin.yum:
+  ansible.builtin.systemd:
     name: autofs
     state: restarted
