@@ -4,6 +4,8 @@
     path: "/home/{{item.username}}/Company_Share"
     state: directory
     mode: 0755
+    owner: "{{item.username}}"
+    group: "{{item.group}}"
   with_items: "{{ [sudo_users, regular_users] |
                   community.general.lists_mergeby('username') }}"
 
@@ -12,6 +14,8 @@
     path: "{{nfs_host_path}}/users"
     state: directory
     mode: 0777
+    owner: root
+    group: root
   when: inventory_hostname in groups['db_nfs']
 
 - name: Create subdirectories for every user
