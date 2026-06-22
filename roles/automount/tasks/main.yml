@@ -12,7 +12,7 @@
     path: "{{nfs_host_path}}/users"
     state: directory
     mode: 0777
-  when: inventory_hosts in group['db_nfs']
+  when: inventory_hosts in groups['db_nfs']
 
 - name: Create subdirectories for every user
   ansible.builtin.file:
