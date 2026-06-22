@@ -23,5 +23,5 @@
     group: "{{item.group}}"
   with_items: "{{ [sudo_users, regular_users] |
                   community.general.lists_mergeby('username') }}"
-  when: inventory_hosts in group['db_nfs']
+  when: inventory_hosts in groups['db_nfs']
             
