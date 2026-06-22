@@ -4,3 +4,19 @@
     name: autofs
     state: present
 
+- name: Deploy AutoFS configuration
+  ansible.builtin.template:
+    src: templates/autofs.master.j2
+    dest: /etc/auto.master.d/ansible.master
+
+- name: Deploy AutoFS mapping
+  ansible.builtin.blockinfile:
+    path: /etc/auto.misc
+    insertafter: EOF
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: "{{ lookup('template', 'autofs.misc.j2')}}"
+
+- name: Restart AutoFS service
+  ansible.builtin.yum:
+    name: autofs
+    state: restarted

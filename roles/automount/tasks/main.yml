@@ -29,3 +29,5 @@
                   community.general.lists_mergeby('username') }}"
   when: inventory_hostname in groups['db_nfs']
             
+- name: Configure AutoFS to auto mount directories
+  import_tasks: autofs.yml
