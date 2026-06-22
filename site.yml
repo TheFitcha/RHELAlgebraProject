@@ -24,10 +24,10 @@
         name: users
       tags: users
 
-    # - name: Setup per-user company share  # BR-06
-    #   ansible.builtin.import_role:
-    #     name: ???
-    #   tags: ???
+    - name: Setup per-user company share  # BR-06
+      ansible.builtin.import_role:
+        name: automount
+      tags: automount
 
     # - name: Setup internal email server  # BR-07
     #   ansible.builtin.import_role:

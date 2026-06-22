@@ -1,6 +1,12 @@
 ansible_python_interpreter: /usr/bin/python3
 
+sudo_users:
+  - { username: ops01, group: ops }
 
+regular_users:
+  - { username: dev01, group: dev }
+  - { username: dev02, group: dev }
+  - { username: mkt01, group: markerting }
   
-
+nfs_mount_path: /mnt/shared
 

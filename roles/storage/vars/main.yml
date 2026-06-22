@@ -3,7 +3,6 @@ nfs_packages:
   - lvm2
 
 nfs_host_path: /var/nfs_shared
-nfs_mount_path: /mnt/shared
 
 lvm_nfs_device: /dev/vdb
 vg_name: nfs_vg

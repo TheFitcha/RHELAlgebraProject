@@ -1,0 +1,24 @@
+---
+- name: Create Company_Share directory for all users
+  ansible.builtin.file:
+    path: "/home/{{item.username}}/Company_Share"
+    state: directory
+    mode: 0755
+  with_items: "{{ [sudo_users, regular_users] |
+                  community.general.lists_mergeby('username') }}"
+
+- name: Create dedicated users subdirectory in NFS share
+  ansible.builtin.file:
+    path: "{{nfs_host_path}}/users"
+    state: directory
+    mode: 0777
+
+- name: Create subdirectories for every user
+  ansible.builtin.file:
+    path: "{{nfs_host_path}}/users/{{item}}"
+    state: directory
+    mode: 0755
+    owner: "{{item.username}}"
+    group: "{{item.group}}"
+  with_items: "{{ [sudo_users, regular_users] |
+                  community.general.lists_mergeby('username') }}"
