@@ -7,11 +7,11 @@
 - name: Deploy AutoFS configuration
   ansible.builtin.template:
     src: templates/autofs.master.j2
-    dest: /etc/auto.master.d/ansible.master
+    dest: /etc/auto.master.d/ansible.autofs
 
 - name: Deploy AutoFS mapping
   ansible.builtin.template:
-    src: templates/autofs.misc.j2
+    src: templates/autofs.home.j2
     dest: /etc/auto.home
 
 - name: Ensure AutoFS service is enabled and restarted
