@@ -4,4 +4,4 @@ collections:
   - name: community.mysql
     source: https://galaxy.ansible.com
   - name: ansible.posix
-  - name: community.general
+  - name: community.general:7.5.0

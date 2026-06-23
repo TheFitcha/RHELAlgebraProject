@@ -1,1 +1,10 @@
 python3-PyMySQL
+
+# u slucaju da javlja X509 error
+python3 -m pip uninstall pyOpenSSL cryptography
+
+dnf reinstall python3-pyOpenSSL python3-cryptography openssl
+
+python3 -c "import OpenSSL; print(OpenSSL.__version__)" -> mora raditi
+
+pip install "ansible-core<2.18"
