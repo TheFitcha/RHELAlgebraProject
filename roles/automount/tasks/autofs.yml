@@ -16,7 +16,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
     block: "{{ lookup('template', 'autofs.misc.j2')}}"
 
-- name: Restart AutoFS service
+- name: Ensure AutoFS service is enabled and started
   ansible.builtin.systemd:
     name: autofs
     state: started
