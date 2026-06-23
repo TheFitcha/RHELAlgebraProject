@@ -1,1 +1,4 @@
 ---
+- name: Install and configure postfix
+  import_tasks: postfix.yml
+  when: inventory_hostname in groups['web_dns']

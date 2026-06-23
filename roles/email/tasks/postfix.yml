@@ -1,0 +1,20 @@
+---
+- name: Ensure postfix is installed on servera
+  ansible.builtin.yum:
+    name: postfix
+    state: present
+
+- name: Configure postfix parameters
+  ansible.builtin.command:
+    cmd: postconf -e "{{item.param}} = {{item.value}}"
+  with_items: "{{postfix_params}}"
+
+- name: Check postfix params validity
+  ansible.builtin.command:
+    cmd: postfix check -c /etc/postfix
+  register: postfix_check_result
+
+- name: Print postfix config check result
+  ansible.builtin.debug:
+    msg: "{{postfix_check_result}}"
+    
