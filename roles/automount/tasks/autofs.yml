@@ -19,4 +19,5 @@
 - name: Restart AutoFS service
   ansible.builtin.systemd:
     name: autofs
-    state: restarted
+    state: started
+    enabled: true
