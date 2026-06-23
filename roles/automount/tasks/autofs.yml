@@ -10,11 +10,10 @@
     dest: /etc/auto.master.d/ansible.master
 
 - name: Deploy AutoFS mapping
-  ansible.builtin.blockinfile:
-    path: /etc/auto.misc
-    insertafter: EOF
+  ansible.builtin.template:
+    src: templates/autofs.misc.j2
+    dest: /etc/auto.home
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
-    block: "{{ lookup('template', 'autofs.misc.j2')}}"
 
 - name: Ensure AutoFS service is enabled and restarted
   ansible.builtin.systemd:
