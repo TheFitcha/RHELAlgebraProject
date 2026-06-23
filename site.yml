@@ -29,11 +29,10 @@
         name: automount
       tags: automount
 
-    # - name: Setup internal email server  # BR-07
-    #   ansible.builtin.import_role:
-    #     name: email
-    #   tags: email
-
+    - name: Setup internal email server  # BR-07
+      ansible.builtin.import_role:
+        name: email
+      tags: email
 
     - name: Setup security hardening  # BR-08
       ansible.builtin.import_role:

@@ -1,7 +1,7 @@
 {% for item in sudo_users %}
-{{item.username}}_autofs -rw,soft,intr,rsize=8192,wsize=8192 172.25.250.11:{{nfs_host_path}}/users/{{item.username}}
+{{item.username}}/Company_Share -rw,soft,intr,strict,rsize=8192,wsize=8192 172.25.250.11:{{nfs_host_path}}/users/{{item.username}}
 {% endfor %}
 
 {% for item in regular_users %}
-{{item.username}}_autofs -rw,soft,intr,rsize=8192,wsize=8192 172.25.250.11:{{nfs_host_path}}/users/{{item.username}}
+{{item.username}}/Company_Share -rw,soft,intr,strict,rsize=8192,wsize=8192 172.25.250.11:{{nfs_host_path}}/users/{{item.username}}
 {% endfor %}
