@@ -5,4 +5,3 @@ collections:
     source: https://galaxy.ansible.com
   - name: ansible.posix
   - name: community.general
-    version: 7.5.0
