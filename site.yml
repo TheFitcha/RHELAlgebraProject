@@ -4,6 +4,12 @@
   become: true
   remote_user: root
   tasks:
+    # must be done before any configuration
+    - name: Setup security hardening  # BR-08
+      ansible.builtin.import_role:
+        name: security
+      tags: security
+
     - name: Setup internal knowlegde base and company website # BR-01, BR-02
       ansible.builtin.import_role:
         name: web
@@ -33,11 +39,6 @@
       ansible.builtin.import_role:
         name: email
       tags: email
-
-    - name: Setup security hardening  # BR-08
-      ansible.builtin.import_role:
-        name: security
-      tags: security
 
     # - name: Setup logging and rotation  #BR-09, BR-11
     #   ansible.builtin.import_role:

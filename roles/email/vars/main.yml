@@ -2,4 +2,4 @@ postfix_params:
   - { param: mail_hostname, value: mail.servera.lab.example.com }
   - { param: mail_domain, value: nexcore.local }
   - { param: mail_spool, value: /var/mail }
-  - { param:  mail_networks, value: "172.0.0.0/8, 172.25.250.10/24" }
+  - { param: mail_networks, value: "172.0.0.0/8, 172.25.250.10/24" }
