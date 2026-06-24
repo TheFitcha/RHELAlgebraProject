@@ -3,8 +3,9 @@ postfix_params:
   - { param: myhostname, value: mail.servera.lab.example.com }
   - { param: mydomain, value: nexcore.local }
   - { param: myorigin, value: $mydomain }
+  - { param: mydestination, value: "$myhostname, localhost.$mydomain, localhost, $mydomain" }
   - { param: mail_spool_directory, value: /var/mail }
-  - { param: mynetworks, value: "172.0.0.0/8, 172.25.250.10/24" }
+  - { param: mynetworks, value: "127.0.0.0/8, 172.25.250.0/24" }
   - { param: home_mailbox, value: Maildir/ }
 
 home_mailbox: Maildir/
