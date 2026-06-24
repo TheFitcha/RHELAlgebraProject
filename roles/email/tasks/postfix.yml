@@ -43,7 +43,12 @@
   ansible.builtin.command:
     cmd: echo "test message" | mail -s test ops01@nexcore.local
   
-# - name: Check /var/spool/mail for test email
-#   ansible.builtin.command:
-#     cmd: cat /var/spool/mail
+- name: Check /var/spool/mail for test email
+  ansible.builtin.command:
+    cmd: cat /var/spool/mail/ops01
+  register: spool_check_result
+
+- name: Print spool check result
+  ansible.builtin.debug:
+    msg: "{{spool_check_result}}"
     
