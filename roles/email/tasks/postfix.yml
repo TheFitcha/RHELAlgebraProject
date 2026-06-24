@@ -19,10 +19,11 @@
     msg: "{{postfix_check_result}}"
   failed_when: postfix_check_result.failed == true
 
-- name: Restart postfix service
+- name: Restart and enable postfix service
   ansible.builtin.systemd:
     name: postfix
     state: restarted
+    enabled: true
 
 - name: Create local mail folder for users
   ansible.builtin.file:
