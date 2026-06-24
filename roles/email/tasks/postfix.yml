@@ -19,15 +19,6 @@
     msg: "{{postfix_check_result}}"
   failed_when: postfix_check_result.failed == true
 
-- name: Create local mailbox for users
-  ansible.builtin.file:
-    path: "/home/{{item.0.username}}/{{home_mailbox}}/{{item.1}}"
-    owner: "{{item.0.username}}"
-    group: "{{item.0.group}}"
-    mode: 0755
-    state: directory
-  loop: "{{ all_users | product(['cur', 'new', 'tmp']) | list }}"
-
 
 
     
