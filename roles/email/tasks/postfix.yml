@@ -26,12 +26,13 @@
 
 - name: Create local mailbox for users
   ansible.builtin.file:
-    path: "/home/{{item.0.username}}/{{home_mailbox}}/{{item.1}}"
+    src: "/var/spool/mail/{{item.username}}"
+    dest: "/home/{{item.username}}/{{home_mailbox}}}"
     owner: "{{item.0.username}}"
     group: "{{item.0.group}}"
     mode: 0755
-    state: directory
-  loop: "{{ all_users | product(['cur', 'new', 'tmp']) | list }}"
+    state: link
+  loop: "{{ all_users }}"
 
 - name: Install utils for sending mail
   ansible.builtin.yum:
@@ -50,5 +51,5 @@
 
 - name: Print spool check result
   ansible.builtin.debug:
-    msg: "{{spool_check_result}}"
+    msg: "{{spool_check_result.stdout_lines}}"
     
