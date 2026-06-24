@@ -1,10 +1,27 @@
 ---
+- name: Create folder to store maintenance scripts
+  ansible.builtin.file:
+    path: "{{script_location}}"
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
+- name: Copy scripts to servers
+  ansible.builtin.copy:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    remote_src: yes
+  with_items: 
+    - { src: "files/health_check.sh", dest: "{{script_location}}/health_check.sh"}
+    - { src: "files/upgrade_server.sh", dest: "{{script_location}}/upgrade_server.sh"}
+
 - name: Ensure health script runs every day at 3AM
   ansible.builtin.cron:
     name: "health check"
     minute: "0"
     hour: "3"
-    job: "files/health_check.sh"
+    job: "{{script_location}}/health_check.sh"
   
 - name: Create a job which cleans cache every sunday at 4AM
   ansible.builtin.cron:
@@ -19,4 +36,4 @@
     name: "update packages"
     minute: "0"
     hour: "0"
-    job: "files/upgrade_server.sh"
+    job: "{{script_location}}/upgrade_server.sh"
