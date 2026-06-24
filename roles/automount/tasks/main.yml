@@ -6,8 +6,7 @@
     mode: 0755
     owner: "{{item.username}}"
     group: "{{item.group}}"
-  with_items: "{{ [sudo_users, regular_users] |
-                  community.general.lists_mergeby('username') }}"
+  with_items: "{{ all_users }}"
 
 - name: Create dedicated users subdirectory in NFS share
   ansible.builtin.file:
@@ -25,8 +24,7 @@
     mode: 0755
     owner: "{{item.username}}"
     group: "{{item.group}}"
-  with_items: "{{ [sudo_users, regular_users] |
-                  community.general.lists_mergeby('username') }}"
+  with_items: "{{ all_users }}"
   when: inventory_hostname in groups['db_nfs']
             
 - name: Configure AutoFS to auto mount directories
