@@ -4,11 +4,11 @@ postfix_params:
   - { param: mydomain, value: nexcore.local }
   - { param: myorigin, value: $mydomain }
   - { param: mydestination, value: "$myhostname, localhost.$mydomain, localhost, $mydomain" }
-  - { param: mail_spool_directory, value: /var/mail }
+  - { param: mail_spool_directory, value: /var/spool/mail }
   - { param: mynetworks, value: "127.0.0.0/8, 172.25.250.0/24" }
-  - { param: home_mailbox, value: Maildir/ }
 
 home_mailbox: Maildir/
 
 mail_packages:
   - sendmail
+  - s-nail
