@@ -1,4 +1,5 @@
 python3-PyMySQL
+telnet
 
 # u slucaju da javlja X509 error
 python3 -m pip uninstall pyOpenSSL cryptography
