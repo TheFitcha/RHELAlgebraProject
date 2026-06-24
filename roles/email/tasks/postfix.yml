@@ -21,12 +21,12 @@
 
 - name: Create local mailbox for users
   ansible.builtin.file:
-    path: "/home/{{item.username}}/{{home_mailbox}}/{cur,new,tmp}"
-    owner: "{{item.username}}"
-    group: "{{item.group}}"
+    path: "/home/{{item.0.username}}/{{home_mailbox}}/{{item.1}}"
+    owner: "{{item.0.username}}"
+    group: "{{item.0.group}}"
     mode: 0755
     state: directory
-  with_items: "{{all_users}}"
+  with_items: "{{ all_users | product(['cur', 'new', 'tmp']) | list }}"
 
 
 
