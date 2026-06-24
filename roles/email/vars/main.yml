@@ -9,3 +9,6 @@ postfix_params:
   - { param: home_mailbox, value: Maildir/ }
 
 home_mailbox: Maildir/
+
+mail_packages:
+  - sendmail

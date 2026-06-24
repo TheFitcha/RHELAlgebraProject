@@ -11,3 +11,9 @@
     mode: 0755
     state: directory
   loop: "{{ all_users | product(['cur', 'new', 'tmp']) | list }}"
+
+- name: Install utils for sending mail
+  ansible.builtin.yum:
+    name: "{{item}}"
+    state: present
+  with_items: "{{mail_packages}}"
