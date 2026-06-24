@@ -1,0 +1,22 @@
+---
+- name: Ensure health script runs every day at 3AM
+  ansible.builtin.cron:
+    name: "health check"
+    minute: "0"
+    hour: "3"
+    job: "files/health_check.sh"
+  
+- name: Create a job which cleans cache every sunday at 4AM
+  ansible.builtin.cron:
+    name: "cache cleanup"
+    minute: "0"
+    hour: "4"
+    weekday: "7"
+    job: "sudo dnf clean all"
+
+- name: Create a job which frequently updates packages
+  ansible.builtin.cron:
+    name: "update packages"
+    minute: "0"
+    hour: "0"
+    job: "files/upgrade_server.sh"
