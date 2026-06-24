@@ -17,5 +17,5 @@
 - name: Print postfix config check result
   ansible.builtin.debug:
     msg: "{{postfix_check_result}}"
-  failed_when: postfix_check_result.failed == true
+  failed_when: postfix_check_result.failed == false
     
