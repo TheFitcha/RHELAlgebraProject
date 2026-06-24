@@ -7,6 +7,12 @@ regular_users:
   - { username: dev01, group: dev }
   - { username: dev02, group: dev }
   - { username: mkt01, group: marketing }
+
+all_users:
+  - { username: ops01, group: ops }
+  - { username: dev01, group: dev }
+  - { username: dev02, group: dev }
+  - { username: mkt01, group: marketing }
   
 nfs_mount_path: /mnt/shared
 nfs_host_path: /var/nfs_shared
