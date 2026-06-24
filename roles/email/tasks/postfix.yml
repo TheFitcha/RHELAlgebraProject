@@ -26,7 +26,7 @@
     group: "{{item.0.group}}"
     mode: 0755
     state: directory
-  with_items: "{{ all_users | product(['cur', 'new', 'tmp']) | list }}"
+  loop: "{{ all_users | product(['cur', 'new', 'tmp']) | list }}"
 
 
 
