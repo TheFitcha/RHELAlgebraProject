@@ -28,8 +28,8 @@
   ansible.builtin.file:
     src: "/var/spool/mail/{{item.username}}"
     dest: "/home/{{item.username}}/{{home_mailbox}}}"
-    owner: "{{item.0.username}}"
-    group: "{{item.0.group}}"
+    owner: "{{item.username}}"
+    group: "{{item.group}}"
     mode: 0755
     state: link
   loop: "{{ all_users }}"
