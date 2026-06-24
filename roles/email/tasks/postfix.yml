@@ -24,7 +24,16 @@
     name: postfix
     state: restarted
 
-- name: Create local mailbox for users
+- name: Create local mail folder for users
+  ansible.builtin.file:
+    path: "/home/{{item.username}}/{{home_mailbox}}"
+    owner: "{{item.username}}"
+    group: "{{item.group}}"
+    mode: 0755
+    state: directory
+  with_items: "{{ all_users }}"
+
+- name: Link local mailbox for users
   ansible.builtin.file:
     src: "/var/spool/mail/{{item.username}}"
     dest: "/home/{{item.username}}/{{home_mailbox}}"
@@ -32,7 +41,7 @@
     group: "{{item.group}}"
     mode: 0755
     state: link
-  loop: "{{ all_users }}"
+  with_items: "{{ all_users }}"
 
 - name: Install utils for sending mail
   ansible.builtin.yum:
