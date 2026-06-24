@@ -11,7 +11,9 @@
   ansible.builtin.copy:
     src: "{{item.src}}"
     dest: "{{item.dest}}"
-    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
   with_items: 
     - { src: "health_check.sh", dest: "{{script_location}}/health_check.sh"}
     - { src: "upgrade_server.sh", dest: "{{script_location}}/upgrade_server.sh"}
