@@ -23,11 +23,11 @@
     state: present
   with_items: "{{ selinux_allowed_httpd_ports_web }}"
 
-- name: Allow needed postfix ports through SELinux (web)
-  community.general.seport:
-    ports: "{{item}}"
-    proto: tcp
-    setype: postfix_smtp_t
-    state: present
-  with_items: "{{ selinux_allowed_httpd_ports_web }}"
+# - name: Allow needed postfix ports through SELinux (web)
+#   community.general.seport:
+#     ports: "{{item}}"
+#     proto: tcp
+#     setype: postfix_smtp_t
+#     state: present
+#   with_items: "{{ selinux_allowed_httpd_ports_web }}"
 
