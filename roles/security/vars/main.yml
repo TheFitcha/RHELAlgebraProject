@@ -21,3 +21,6 @@ firewall_allowed_services_web:
 selinux_allowed_httpd_ports_web:
   - 90 #mediawiki
   - 91 #wordpress
+
+selinux_allowed_postfix_ports_web:
+  - 25 #smtp
