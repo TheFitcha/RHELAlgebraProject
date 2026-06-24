@@ -45,10 +45,10 @@
     #     name: logging
     #   tags: logging
 
-    # - name: Setup maintenance  # BR-10
-    #   ansible.builtin.import_role:
-    #     name: patching
-    #   tags: patching
+    - name: Setup maintenance  # BR-10
+      ansible.builtin.import_role:
+        name: patching
+      tags: patching
 
     
 
