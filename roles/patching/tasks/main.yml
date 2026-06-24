@@ -13,8 +13,8 @@
     dest: "{{item.dest}}"
     remote_src: yes
   with_items: 
-    - { src: "files/health_check.sh", dest: "{{script_location}}/health_check.sh"}
-    - { src: "files/upgrade_server.sh", dest: "{{script_location}}/upgrade_server.sh"}
+    - { src: "health_check.sh", dest: "{{script_location}}/health_check.sh"}
+    - { src: "upgrade_server.sh", dest: "{{script_location}}/upgrade_server.sh"}
 
 - name: Ensure health script runs every day at 3AM
   ansible.builtin.cron:
