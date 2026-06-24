@@ -27,7 +27,7 @@
 - name: Create local mailbox for users
   ansible.builtin.file:
     src: "/var/spool/mail/{{item.username}}"
-    dest: "/home/{{item.username}}/{{home_mailbox}}}"
+    dest: "/home/{{item.username}}/{{home_mailbox}}"
     owner: "{{item.username}}"
     group: "{{item.group}}"
     mode: 0755
