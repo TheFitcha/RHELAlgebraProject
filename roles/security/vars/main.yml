@@ -10,11 +10,13 @@ firewall_allowed_ports_db:
 firewall_allowed_ports_web:
   - 90 #mediawiki
   - 91 #wordpress
+  - 25 #smtp
 
 firewall_allowed_services_web:
   - http
   - dns
   - dhcp
+  - smtp
 
 selinux_allowed_httpd_ports_web:
   - 90 #mediawiki
