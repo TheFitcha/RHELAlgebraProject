@@ -19,10 +19,10 @@
     msg: "{{postfix_check_result}}"
   failed_when: postfix_check_result.failed == true
 
-- name: Reload postfix service
+- name: Restart postfix service
   ansible.builtin.systemd:
     name: postfix
-    state: reloaded
+    state: restarted
 
 
     
