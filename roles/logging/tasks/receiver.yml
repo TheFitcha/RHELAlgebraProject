@@ -1,8 +1,8 @@
 - name: Create receiving folder for logs
   ansible.builtin.file:
     path: "{{rsyslog_receive_path}}"
-    owner: syslog
-    group: adm
+    owner: root
+    group: root
     state: directory
     mode: 0755
 
