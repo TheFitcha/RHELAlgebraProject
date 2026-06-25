@@ -6,8 +6,8 @@
 
 - name: Configure sender
   import_tasks: sender.yml
-  when: inventory_hostname in groups['web_dns']
+  when: inventory_hostname in groups['db_nfs']
 
 - name: Configure receiver
   import_tasks: receiver.yml
-  when: inventory_hostname in groups['db_nfs']
+  when: inventory_hostname in groups['web_dns']
