@@ -1,0 +1,10 @@
+- name: Ensure logrotate is installed
+  ansible.builtin.yum:  
+    name: logrotate
+    state: present
+
+- name: Configure log rotation, daily, for 14 days then compressed
+  ansible.builtin.copy:
+    src: files/logrotate.conf
+    dest: /etc/logrotate.d/nexcore
+  notify: Restart logrotate

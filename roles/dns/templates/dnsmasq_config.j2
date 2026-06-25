@@ -1,6 +1,7 @@
 listen-address={{dns_listen_addresses}}
 interface={{dns_interface}}
 expand-hosts
+bind-dynamic
 domain={{root_dns_domain}}
 
 {% for item in dns_nameservers %}

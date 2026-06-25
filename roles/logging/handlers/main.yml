@@ -2,3 +2,10 @@
   service:
     name: rsyslog
     state: restarted
+    enabled: true
+  
+- name: Restart logrotate
+  service:
+    name: logrotate
+    state: restarted
+    enabled: true
