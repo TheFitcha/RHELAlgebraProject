@@ -40,10 +40,10 @@
         name: email
       tags: email
 
-    # - name: Setup logging and rotation  #BR-09, BR-11
-    #   ansible.builtin.import_role:
-    #     name: logging
-    #   tags: logging
+    - name: Setup logging and rotation  #BR-09, BR-11
+      ansible.builtin.import_role:
+        name: logging
+      tags: logging
 
     - name: Setup maintenance  # BR-10
       ansible.builtin.import_role:

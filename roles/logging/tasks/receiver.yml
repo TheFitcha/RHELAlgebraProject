@@ -1,0 +1,13 @@
+- name: Create receiving folder for logs
+  ansible.builtin.file:
+    path: "{{rsyslog_receive_path}}"
+    owner: syslog
+    group: adm
+    state: dictionary
+    mode: 0755
+
+- name: Configure rsyslog to receive all logs from 514/tcp
+  ansible.builtin.copy:
+    src: files/rsyslog_receiver.conf
+    dest: /etc/rsyslog.d/50-ansible-receiver.conf
+  notify: Restart rsyslog

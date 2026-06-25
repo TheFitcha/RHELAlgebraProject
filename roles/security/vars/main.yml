@@ -11,6 +11,7 @@ firewall_allowed_ports_web:
   - 90 #mediawiki
   - 91 #wordpress
   - 25 #smtp
+  - 514 #rsyslog
 
 firewall_allowed_services_web:
   - http
@@ -22,5 +23,5 @@ selinux_allowed_httpd_ports_web:
   - 90 #mediawiki
   - 91 #wordpress
 
-selinux_allowed_postfix_ports_web:
-  - 25 #smtp
+selinux_allowed_rsyslog_ports_web:
+  - 514

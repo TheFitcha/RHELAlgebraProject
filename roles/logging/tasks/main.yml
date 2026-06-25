@@ -1,0 +1,13 @@
+---
+- name: Ensure rsyslog is installed
+  ansible.builtin.yum:
+    name: rsyslog
+    state: present
+
+- name: Configure sender
+  import_tasks: sender.yml
+  when: inventory_hostname in groups['web_dns']
+
+- name: Configure receiver
+  import_tasks: receiver.yml
+  when: inventory_hostname in groups['db_nfs']
