@@ -11,3 +11,6 @@
 - name: Configure receiver
   import_tasks: receiver.yml
   when: inventory_hostname in groups['web_dns']
+
+- name: Configure log rotation
+  import_tasks: rotation.yml
