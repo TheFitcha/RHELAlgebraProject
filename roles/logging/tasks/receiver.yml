@@ -3,7 +3,7 @@
     path: "{{rsyslog_receive_path}}"
     owner: syslog
     group: adm
-    state: dictionary
+    state: directory
     mode: 0755
 
 - name: Configure rsyslog to receive all logs from 514/tcp
