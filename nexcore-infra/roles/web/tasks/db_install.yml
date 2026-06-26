@@ -58,6 +58,3 @@
   ansible.builtin.debug:
     msg: "MySQL state: {{ mysql_connection_output }}"
   when: inventory_hostname in groups['db_nfs']
-
-
-## sloziti python env... community.mysql
