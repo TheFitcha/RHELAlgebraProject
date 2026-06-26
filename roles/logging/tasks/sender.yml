@@ -1,5 +1,5 @@
 - name: Configure rsyslog to forward all logs to servera over 514/tcp
-  ansible.builtin.copy:
-    src: files/rsyslog_sender.conf
+  ansible.builtin.template:
+    src: templates/rsyslog_sender.conf
     dest: /etc/rsyslog.d/50-ansible-sender.conf
   notify: Restart rsyslog

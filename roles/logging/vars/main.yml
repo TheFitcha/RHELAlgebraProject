@@ -1,1 +1,8 @@
 rsyslog_receive_path: /var/log/remote
+serverb_log_name: serverb.log
+
+log_for_rotation: /var/log/nexcore-health.log
+rotate_weeks: 2
+rotate_frequency: daily
+
+rsyslog_remote_port: 514
