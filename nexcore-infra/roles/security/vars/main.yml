@@ -26,4 +26,5 @@ selinux_allowed_rsyslog_ports_web:
 selinux_allowed_booleans_web:
   - httpd_can_network_connect_db
   - postfix_local_write_mail_spool
-  - postfix_mail_write
+  - nis_enabled
+  - httpd_unified
