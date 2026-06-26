@@ -64,3 +64,4 @@
     owner: root
     group: dev
     mode: 0764
+    recurse: true
