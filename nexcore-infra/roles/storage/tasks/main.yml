@@ -57,3 +57,6 @@
     opts: rw,sync
     fstype: nfs
     state: mounted
+    owner: root
+    group: dev
+    mode: 0764
