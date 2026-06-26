@@ -5,4 +5,5 @@
     minute: "0"
     hour: "1"
     user: "{{ backup_user }}"
-    job: ""
+    job: "mysqldump --user {{ item.username }} --password {{ item.pass }} {{ item.database }} > {{ dest_backup }}/{{ item.database }}-$(date +%F).sql"
+  with_items: "{{ dbs_for_backup }}"

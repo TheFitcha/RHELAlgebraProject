@@ -50,5 +50,8 @@
         name: patching
       tags: patching
 
-    
+    - name: Setup database backup
+      ansible.builtin.import_role:
+        name: database_backup
+      tags: database_backup
 

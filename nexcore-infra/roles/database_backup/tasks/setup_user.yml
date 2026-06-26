@@ -1,0 +1,11 @@
+- name: Create db_backup group
+  ansible.builtin.group:  
+    name: "{{ backup_group }}"
+    state: present
+
+- name: Create db_backup user
+  ansible.builtin.user:
+    name: "{{ backup_user }}"
+    groups: "{{ backup_group }}"
+    create_home: false
+    shell: /bin/false
