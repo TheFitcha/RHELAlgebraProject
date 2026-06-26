@@ -34,6 +34,7 @@
 
 - name: Allow httpd to connect to remote db in SELinux
   ansible.posix.seboolean:
-    name: httpd_can_network_connect_db
+    name: "{{ item }}"
     state: true
     persistent: true
+  with_items: "{{ selinux_allowed_booleans_web }}"
