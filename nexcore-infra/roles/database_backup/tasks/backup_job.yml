@@ -1,0 +1,8 @@
+- name: Deploy cron for backing up database nightly
+  ansible.builtin.cron:
+    name: "nightly database backup"
+    weekday: "*"
+    minute: "0"
+    hour: "1"
+    user: "{{ backup_user }}"
+    job: ""

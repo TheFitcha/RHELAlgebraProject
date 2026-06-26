@@ -5,6 +5,6 @@
 
 - name: Configure log rotation, daily, for 14 days then compressed
   ansible.builtin.template:
-    src: templates/logrotate.conf
+    src: templates/logrotate.j2
     dest: /etc/logrotate.d/nexcore
   notify: Restart logrotate

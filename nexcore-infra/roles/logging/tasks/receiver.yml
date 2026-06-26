@@ -8,6 +8,6 @@
 
 - name: Configure rsyslog to receive all logs from 514/tcp
   ansible.builtin.template:
-    src: templates/rsyslog_receiver.conf
+    src: templates/rsyslog_receiver.j2
     dest: /etc/rsyslog.d/50-ansible-receiver.conf
   notify: Restart rsyslog

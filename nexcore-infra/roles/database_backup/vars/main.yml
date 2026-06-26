@@ -1,0 +1,8 @@
+backup_group: db_backup
+backup_user: db_backup
+
+dest_backup: /var/backups/nexcore
+
+dbs_for_backup:
+  - mw_db
+  - wp_db

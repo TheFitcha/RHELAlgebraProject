@@ -1,0 +1,7 @@
+- name: Setup backup user
+  import_tasks: setup_user.yml
+  when: inventory_hostname in groups['db_nfs']
+
+- name: Setup backup job
+  import_tasks: backup_job.yml
+  when: inventory_hostname in groups['db_nfs']
