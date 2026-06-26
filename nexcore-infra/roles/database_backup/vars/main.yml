@@ -4,9 +4,9 @@ backup_user: db_backup
 dest_backup: /var/backups/nexcore
 
 dbs_for_backup:
-  - username: mw_db
-    database: mediawiki
+  - username: mediawiki
+    database: mw_db
     pass: mw_password
-  - username: wp_db
-    database: wordpress
+  - username: wordpress
+    database: wp_db
     pass: wp_password
