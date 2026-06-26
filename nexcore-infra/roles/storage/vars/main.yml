@@ -5,3 +5,5 @@ nfs_packages:
 lvm_nfs_device: /dev/vdb
 vg_name: nfs_vg
 lv_name: nfs_lv
+
+nfs_host_ip: 172.25.250.11
