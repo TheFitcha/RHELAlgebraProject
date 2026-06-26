@@ -1,3 +1,11 @@
+- name: Ensure backup folder exists
+  ansible.builtin.file:
+    path: "{{ dest_backup }}"
+    state: directory
+    owner: "{{ backup_user }}"
+    group: "{{ backup_group }}"
+    mode: 0777
+
 - name: Deploy cron for backing up database nightly
   ansible.builtin.cron:
     name: "nightly database backup - {{ item.database }}"
