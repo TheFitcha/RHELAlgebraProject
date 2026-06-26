@@ -57,11 +57,3 @@
     opts: rw,sync
     fstype: nfs
     state: mounted
-
-- name: Update permissions for mounted folder
-  ansible.builtin.file:
-    path: "{{ nfs_mount_path }}"
-    owner: root
-    group: dev
-    mode: 0764
-    recurse: true
