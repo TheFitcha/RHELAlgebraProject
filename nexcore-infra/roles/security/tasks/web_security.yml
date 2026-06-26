@@ -14,6 +14,7 @@
     immediate: true
     offline: true
   with_items: "{{ firewall_allowed_services_web }}"
+  notify: Restart firewalld
 
 - name: Allow needed httpd ports through SELinux (web)
   community.general.seport:

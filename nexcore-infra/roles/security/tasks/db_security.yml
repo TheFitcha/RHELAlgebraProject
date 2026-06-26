@@ -6,13 +6,6 @@
     state: enabled
   with_items: "{{ firewall_allowed_ports_db }}"
 
-- name: Allow needed protocols through firewall (db)
-  ansible.posix.firewalld:
-    protocol: "{{item}}"
-    permanent: true
-    state: enabled
-  with_items: "{{ firewall_allowed_protocols_db }}"
-
 - name: Allow needed services through firewall (db)
   ansible.posix.firewalld:
     service: "{{item}}"
@@ -21,3 +14,4 @@
     immediate: true
     offline: true
   with_items: "{{ firewall_allowed_services_db }}"
+  notify: Restart firewalld
