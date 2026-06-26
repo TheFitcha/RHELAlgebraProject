@@ -14,4 +14,4 @@
     immediate: true
     offline: true
   with_items: "{{ firewall_allowed_services_db }}"
-  notify: Restart firewalld
+  notify: Restart firewall
