@@ -1,0 +1,17 @@
+firewall_allowed_services_db:
+  - nfs
+
+firewall_allowed_ports_db:
+  - 3306
+
+firewall_allowed_ports_web:
+  - 90 #mediawiki
+  - 91 #wordpress
+  - 25 #smtp
+  - 514 #rsyslog
+
+firewall_allowed_services_web:
+  - http
+  - dns
+  - dhcp
+  - smtp

@@ -36,7 +36,7 @@
     enabled: true
   when: inventory_hostname in groups['web_dns'] and 'syntax check OK' in dnsmasq_syntax_check.stderr
 
-- name: make sure line 'dns=none' is set in /etc/NetworkManager/NetworkManager.conf
+- name: Ensure line 'dns=none' is set in /etc/NetworkManager/NetworkManager.conf
   ini_file:
     path: /etc/NetworkManager/NetworkManager.conf
     state: present
