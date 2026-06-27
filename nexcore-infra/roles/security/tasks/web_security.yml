@@ -32,7 +32,7 @@
     state: present
   with_items: "{{ selinux_allowed_rsyslog_ports_web }}"
 
-- name: Allow httpd to connect to remote db in SELinux
+- name: Allow needed booleans in SELinux
   ansible.posix.seboolean:
     name: "{{ item }}"
     state: true

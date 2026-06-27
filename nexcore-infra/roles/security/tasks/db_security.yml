@@ -1,5 +1,5 @@
 ---
-- name: Allow needed ports through firewall (web)
+- name: Allow needed ports through firewall (db)
   ansible.posix.firewalld:
     port: "{{item}}/tcp"
     permanent: true
