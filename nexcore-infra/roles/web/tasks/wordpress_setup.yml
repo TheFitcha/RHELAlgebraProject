@@ -14,7 +14,6 @@
     setype: httpd_sys_content_t
   when: inventory_hostname in groups['web_dns']
 
-# might need to change to SELinux perms
 - name: Set apache ownership of Wordpress webpage
   ansible.builtin.file:
     path: "{{ wordpress_document_root }}"
@@ -34,7 +33,6 @@
     mode: '0755'
   when: inventory_hostname in groups['web_dns']
 
-# NEED TO ADD EXCEPTION FOR SELINUX
 - name: Deploy configuration for Wordpress
   ansible.builtin.template:
     src: templates/wordpress_httpd.j2
@@ -42,7 +40,7 @@
   when: inventory_hostname in groups['web_dns']
 
 - name: Restart httpd to apply new configuration
-  ansible.builtin.systemd:  # novija verzija je systemd_service (ako bude isao upgrade ansiblea)
+  ansible.builtin.systemd:
     state: restarted
     name: httpd
     enabled: true

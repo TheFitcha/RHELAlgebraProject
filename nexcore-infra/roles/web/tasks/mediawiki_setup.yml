@@ -6,7 +6,6 @@
   loop: "{{ mediawiki_packages }}"
   when: inventory_hostname in groups['web_dns']
 
-# might need to change to SELinux perms
 - name: Set apache ownership of mediawiki webpage
   ansible.builtin.file:
     path: "{{ mediawiki_document_root }}"
@@ -44,12 +43,10 @@
     patterns: "mediawiki-*"
   register: mediawiki_full
 
-# clunky rjesenje, ali za sad je tako
 - name: Rename mediawiki directory so httpd can find it
   ansible.builtin.command: "mv {{ mediawiki_full.files[0].path }} /var/www/html/mediawiki"
   when: inventory_hostname in groups['web_dns'] and mediawiki_full.matched != 0 
 
-# NEED TO ADD EXCEPTION FOR SELINUX
 - name: Deploy configuration for MediaWiki
   ansible.builtin.template:
     src: templates/mediawiki_httpd.j2
