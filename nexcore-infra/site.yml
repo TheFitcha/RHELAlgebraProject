@@ -4,7 +4,6 @@
   become: true
   remote_user: root
   tasks:
-    # must be done before any configuration
     - name: Setup security hardening  # BR-08
       ansible.builtin.import_role:
         name: security
